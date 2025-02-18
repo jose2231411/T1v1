@@ -11,14 +11,12 @@ public class BinarySearchTree<T extends Base> {
     Node<T> raiz;
     private Comparator<T> comparator;
 
-    public BinarySearchTree() {
+    public BinarySearchTree(Comparator<T> comparator) {
         this.raiz = null;
         this.comparator = comparator;
     }
 
-  
-
-    private class Node<T> {
+    public class Node<T> {
 
         T data;
         public Node left;
@@ -30,30 +28,54 @@ public class BinarySearchTree<T extends Base> {
         }
     }
 
+
     public void insert(T data) {
-        Node<T> n = new Node<T>(data);
+        Node<T> n = new Node<>(data);
 
         if (raiz == null) {
             raiz = n;
-        } else {
-            Node<T> aux = raiz;
-            while (aux != null) {
-                if (comparator.compare(data, raiz.data) < 0) {
-                    aux = aux.left;
-                } else if (comparator.compare(data, raiz.data) > 0) {
-                    aux = aux.right;
-                }
-            }
+            return;
+        }
 
+        Node<T> aux = raiz;
+        Node<T> padre = null;
+        while (aux != null) {
+            padre = aux;
+            if (comparator.compare(data, aux.data) < 0) {
+                aux = aux.left;
+            } else {
+                aux = aux.right;
+            }
+        }
+        
+        if (comparator.compare(data, padre.data) < 0) {
+            padre.left = n;
+        } else {
+            padre.right = n;
         }
     }
 
     public void search(T data) {
-        Node<T> aux = raiz;
-        if (aux != null) {
-            search((T) aux.left);
-            System.out.println("data; " + aux.data);
-            search((T) aux.right);
+        Node<T> current = raiz;
+        while (current != null) {
+            int cmp = comparator.compare(data, current.data);
+            if (cmp == 0) {
+                System.out.println("Data: " + current.data);
+                break;
+            } else if (cmp < 0) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+
+    }
+
+    public void recorrer(Node n) {
+        if (n != null) {
+            recorrer(n.left);
+            System.out.println("Data: " + n.data);
+            recorrer(n.right);
         }
     }
 }
