@@ -28,7 +28,6 @@ public class BinarySearchTree<T extends Base> {
         }
     }
 
-
     public void insert(T data) {
         Node<T> n = new Node<>(data);
 
@@ -47,7 +46,7 @@ public class BinarySearchTree<T extends Base> {
                 aux = aux.right;
             }
         }
-        
+
         if (comparator.compare(data, padre.data) < 0) {
             padre.left = n;
         } else {
@@ -71,11 +70,51 @@ public class BinarySearchTree<T extends Base> {
 
     }
 
-    public void recorrer(Node n) {
+    public void inOrderTraversal() {
+        if (raiz == null) {
+            System.out.println("El árbol está vacío.");
+            return;
+        }
+        inOrder(raiz);
+    }
+
+    public void inOrder(Node<T> n) {
         if (n != null) {
-            recorrer(n.left);
+            inOrder(n.left);
             System.out.println("Data: " + n.data);
-            recorrer(n.right);
+            inOrder(n.right);
+        }
+    }
+
+    public void preOrderTraversal() {
+        if (raiz == null) {
+            System.out.println("El árbol está vacío.");
+            return;
+        }
+        preOrder(raiz);
+    }
+
+    private void preOrder(Node<T> n) {
+        if (n != null) {
+            System.out.println("Data: " + n.data);
+            preOrder(n.left);
+            preOrder(n.right);
+        }
+    }
+
+    public void postOrderTraversal() {
+        if (raiz == null) {
+            System.out.println("El árbol está vacío.");
+            return;
+        }
+        postOrder(raiz);
+    }
+
+    private void postOrder(Node<T> n) {
+        if (n != null) {
+            postOrder(n.left);
+            postOrder(n.right);
+            System.out.println("Data: " + n.data);
         }
     }
 }

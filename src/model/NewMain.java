@@ -23,7 +23,7 @@ public class NewMain {
         Pokemon p1 = new Pokemon("andres", 22);
         Pokemon p2 = new Pokemon("david", 25);
         Pokemon p3 = new Pokemon("diego", 54);
-        Pokemon p4 = new Pokemon("juan", 1);
+        Pokemon p4 = new Pokemon("juanada", 1);
         
         arbol.insert(p);
         arbol.insert(p1);
@@ -31,8 +31,12 @@ public class NewMain {
         arbol.insert(p3);
         arbol.insert(p4);
         
-        arbol.recorrer(arbol.raiz.left);
-        
+        System.out.println("InOrder" + "\n");
+        arbol.inOrderTraversal();
+        System.out.println("\n"+ "preOrder" + "\n");
+        arbol.preOrderTraversal();
+        System.out.println("\n"+ "postOrder" + "\n");
+        arbol.postOrderTraversal();
     }
     
 }
