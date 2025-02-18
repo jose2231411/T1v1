@@ -28,10 +28,10 @@ public class BinarySearchTree<T extends Base> {
         }
     }
 
-    public void insert(T data) {
+    public void insert(T data) { //inserta elementos al arbol
         Node<T> n = new Node<>(data);
 
-        if (raiz == null) {
+        if (raiz == null) {//si el arbol esta vacio convierte el elemento en la raiz
             raiz = n;
             return;
         }
@@ -40,13 +40,15 @@ public class BinarySearchTree<T extends Base> {
         Node<T> padre = null;
         while (aux != null) {
             padre = aux;
-            if (comparator.compare(data, aux.data) < 0) {
+            if (comparator.compare(data, aux.data) < 0) {//compara el elemento con la raiz si es menor
+                //almacena en la izquierda
                 aux = aux.left;
             } else {
+                //sino a la derecha
                 aux = aux.right;
             }
         }
-
+        //mismo proceso con el siguiente elemento en el arbol
         if (comparator.compare(data, padre.data) < 0) {
             padre.left = n;
         } else {
@@ -54,7 +56,7 @@ public class BinarySearchTree<T extends Base> {
         }
     }
 
-    public void search(T data) {
+    public void search(T data) { //Busca un elemento dado y lo imprime en la consola
         Node<T> current = raiz;
         while (current != null) {
             int cmp = comparator.compare(data, current.data);
@@ -70,7 +72,7 @@ public class BinarySearchTree<T extends Base> {
 
     }
 
-    public void inOrderTraversal() {
+    public void inOrderTraversal() {//Izquierda - Raíz - Derecha
         if (raiz == null) {
             System.out.println("El árbol está vacío.");
             return;
@@ -86,7 +88,7 @@ public class BinarySearchTree<T extends Base> {
         }
     }
 
-    public void preOrderTraversal() {
+    public void preOrderTraversal() {//Raíz - Izquierda - Derecha
         if (raiz == null) {
             System.out.println("El árbol está vacío.");
             return;
@@ -102,7 +104,7 @@ public class BinarySearchTree<T extends Base> {
         }
     }
 
-    public void postOrderTraversal() {
+    public void postOrderTraversal() {//Izquierda - Derecha - Raíz
         if (raiz == null) {
             System.out.println("El árbol está vacío.");
             return;

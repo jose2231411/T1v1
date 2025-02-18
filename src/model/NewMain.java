@@ -19,6 +19,7 @@ public class NewMain {
     public static void main(String[] args) {
         BinarySearchTree<Pokemon> arbol;
         arbol = new BinarySearchTree<Pokemon>(Comparator.comparingInt(Pokemon::getLevel));
+        //Compara en base al nivel, es necesario dar un comparador
         Pokemon p = new Pokemon("juan", 11);
         Pokemon p1 = new Pokemon("andres", 22);
         Pokemon p2 = new Pokemon("david", 25);
