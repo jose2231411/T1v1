@@ -54,32 +54,32 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    public void search(T data) { //Busca un elemento dado y lo imprime en la consola
+    public String search(T data) { //Busca un elemento dado y lo imprime en la consola
         Node<T> current = raiz;
+        String res;
         while (current != null) {
             int cmp = data.compareTo(current.data);
             if (cmp == 0) {
-                System.out.println("Data: " + current.data);
-                break;
+                return res = "Dato encontrado: " + current.data;
+
             } else if (cmp < 0) {
                 current = current.left;
             } else {
                 current = current.right;
             }
         }
-
+        return res = "Dato no encontrado";
     }
 
-    
-    public void inOrderTraversal() {//Izquierda - Raíz - Derecha
+    public String inOrderTraversal() {//Izquierda - Raíz - Derecha
         if (raiz == null) {
             System.out.println("El árbol está vacío.");
-            return;
+            return "El arbol esta vacio";
         }
 
         Stack<Node> s = new Stack<Node>();
         Node curr = raiz;
-
+        String res = "";
         // traverse the tree
         while (curr != null || !s.isEmpty()) {
 
@@ -96,58 +96,24 @@ public class BinarySearchTree<T extends Comparable<T>> {
             // Current must be NULL at this point
             curr = s.pop();
 
-            System.out.print("Data: " + curr.data + "; ");
+            res += "Data: " + curr.data + "; ";
 
             // we have visited the node and its
             // left subtree. Now, it's right
             // subtree's turn
             curr = curr.right;
         }
+        return res;
     }
 
-    public void preOrderTraversal() {//Raíz - Izquierda - Derecha
+    public String preOrderTraversal() {//Raíz - Izquierda - Derecha
         if (raiz == null) {
             System.out.println("El árbol está vacío.");
-            return;
+            return "El arbol esta vacio";
         }
         Stack<Node> s = new Stack<Node>();
         Node curr = raiz;
-        System.out.print("Data: " + curr.data + "; ");
-
-        // traverse the tree
-        while (curr != null || !s.isEmpty()) {
-
-            // Reach the left most
-            // Node of the current Node
-            while (curr != null) {
-                // place pointer to a tree node on
-                // the stack before traversing
-                // the node's left subtree
-                s.push(curr);
-                curr = curr.left;
-            }
-
-            // Current must be NULL at this point
-            curr = s.pop();
-            if (curr != raiz) {
-                System.out.print("Data: " + curr.data + "; ");
-            }
-
-            // we have visited the node and its
-            // left subtree. Now, it's right
-            // subtree's turn
-            curr = curr.right;
-
-        }
-    }
-
-    public void postOrderTraversal() {//Izquierda - Derecha - Raíz
-        if (raiz == null) {
-            System.out.println("El árbol está vacío.");
-            return;
-        }
-        Stack<Node> s = new Stack<Node>();
-        Node curr = raiz;
+        String res = "Data: " + curr.data + "; ";
         // traverse the tree
         while (curr != null || !s.isEmpty()) {
 
@@ -164,7 +130,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
             // Current must be NULL at this point
             curr = s.pop();
             if (curr != raiz) {
-                System.out.print("Data: " + curr.data + "; ");
+                res += "Data: " + curr.data + "; ";
+
             }
 
             // we have visited the node and its
@@ -172,6 +139,42 @@ public class BinarySearchTree<T extends Comparable<T>> {
             // subtree's turn
             curr = curr.right;
         }
-        System.out.print("Data: " + raiz.data + "; ");
+        return res;
+    }
+
+    public String postOrderTraversal() {//Izquierda - Derecha - Raíz
+        if (raiz == null) {
+            System.out.println("El árbol está vacío.");
+            return "El arbol esta vacio";
+        }
+        Stack<Node> s = new Stack<Node>();
+        Node curr = raiz;
+        String res = "";
+        // traverse the tree
+        while (curr != null || !s.isEmpty()) {
+
+            // Reach the left most
+            // Node of the current Node
+            while (curr != null) {
+                // place pointer to a tree node on
+                // the stack before traversing
+                // the node's left subtree
+                s.push(curr);
+                curr = curr.left;
+            }
+
+            // Current must be NULL at this point
+            curr = s.pop();
+            if (curr != raiz) {
+                res += "Data: " + curr.data + "; ";
+            }
+
+            // we have visited the node and its
+            // left subtree. Now, it's right
+            // subtree's turn
+            curr = curr.right;
+        }
+        res += "Data: " + raiz.data + "; ";
+        return res;
     }
 }
