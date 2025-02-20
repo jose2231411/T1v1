@@ -4,16 +4,12 @@
  */
 package model;
 
-import java.util.Comparator;
+public class BinarySearchTree<T extends Comparable<T>> {
 
-public class BinarySearchTree<T extends Base> {
+    private Node<T> raiz;
 
-    Node<T> raiz;
-    private Comparator<T> comparator;
-
-    public BinarySearchTree(Comparator<T> comparator) {
+    public BinarySearchTree() {
         this.raiz = null;
-        this.comparator = comparator;
     }
 
     public class Node<T> {
@@ -40,7 +36,7 @@ public class BinarySearchTree<T extends Base> {
         Node<T> padre = null;
         while (aux != null) {
             padre = aux;
-            if (comparator.compare(data, aux.data) < 0) {//compara el elemento con la raiz si es menor
+            if (data.compareTo(aux.data) < 0) {//compara el elemento con la raiz si es menor
                 //almacena en la izquierda
                 aux = aux.left;
             } else {
@@ -49,7 +45,7 @@ public class BinarySearchTree<T extends Base> {
             }
         }
         //mismo proceso con el siguiente elemento en el arbol
-        if (comparator.compare(data, padre.data) < 0) {
+        if (data.compareTo(padre.data) < 0) {
             padre.left = n;
         } else {
             padre.right = n;
@@ -59,7 +55,7 @@ public class BinarySearchTree<T extends Base> {
     public void search(T data) { //Busca un elemento dado y lo imprime en la consola
         Node<T> current = raiz;
         while (current != null) {
-            int cmp = comparator.compare(data, current.data);
+            int cmp = data.compareTo(current.data);
             if (cmp == 0) {
                 System.out.println("Data: " + current.data);
                 break;
@@ -78,9 +74,17 @@ public class BinarySearchTree<T extends Base> {
             return;
         }
         inOrder(raiz);
+        //        Node<T> n = raiz;
+        //        while (n != null) {
+        //            n = n.left;
+        //        } System.out.println("Data: " + n.data);
+        //        while (n.right != null) {
+        //            n = n.right;
+        //            System.out.println("Data: " + n.data);
+        //        }
     }
 
-    public void inOrder(Node<T> n) {
+    private void inOrder(Node<T> n) {
         if (n != null) {
             inOrder(n.left);
             System.out.println("Data: " + n.data);

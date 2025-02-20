@@ -5,7 +5,7 @@
 package model;
 
 import data.Pokemon;
-import java.util.Comparator;
+
 
 /**
  *
@@ -17,20 +17,24 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BinarySearchTree<Pokemon> arbol;
-        arbol = new BinarySearchTree<Pokemon>(Comparator.comparingInt(Pokemon::getLevel));
+        BinarySearchTree<Pokemon> arbol = new BinarySearchTree<Pokemon>();
+  
         //Compara en base al nivel, es necesario dar un comparador
         Pokemon p = new Pokemon("juan", 11);
         Pokemon p1 = new Pokemon("andres", 22);
         Pokemon p2 = new Pokemon("david", 25);
         Pokemon p3 = new Pokemon("diego", 54);
-        Pokemon p4 = new Pokemon("juanada", 1);
+        Pokemon p4 = new Pokemon("juanada", 4);
+        Pokemon p5 = new Pokemon("ju", 2);
+        Pokemon p6 = new Pokemon("jua", 3);
         
         arbol.insert(p);
         arbol.insert(p1);
         arbol.insert(p2);
         arbol.insert(p3);
         arbol.insert(p4);
+        arbol.insert(p5);
+        arbol.insert(p6);
         
         System.out.println("InOrder" + "\n");
         arbol.inOrderTraversal();

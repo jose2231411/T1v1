@@ -4,9 +4,9 @@
  */
 package data;
 
-import model.Base;
 
-public class Pokemon implements Base {
+
+public class Pokemon implements Comparable<Pokemon>{
 
     private String name;
     private int level;
@@ -36,14 +36,15 @@ public class Pokemon implements Base {
         this.level = level;
     }
 
-    @Override
-    public Base copy() {
-        return new Pokemon(name, level);
-    }
 
     @Override
     public String toString() {
         return name + "," + level;
+    }
+
+    @Override
+    public int compareTo(Pokemon other) {
+        return Integer.compare(this.level, other.level);
     }
 
 }
