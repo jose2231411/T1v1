@@ -7,16 +7,15 @@ package model;
 import java.util.Stack;
 
 public class BinarySearchTree<T extends Comparable<T>> {
-
-    private Node<T> raiz;
-
+    public Node<T> raiz;
+    
     public BinarySearchTree() {
         this.raiz = null;
     }
 
     public class Node<T> {
 
-        T data;
+        public T data;
         public Node left;
         public Node right;
 
@@ -24,6 +23,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
             this.data = data;
             this.left = this.right = null;
         }
+    }
+
+    public Node<T> getRaiz() {
+        return raiz;
     }
 
     public void insert(T data) { //inserta elementos al arbol
@@ -177,4 +180,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         res += "Data: " + raiz.data + "; ";
         return res;
     }
+
+
 }
